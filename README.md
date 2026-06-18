@@ -1,2 +1,1163 @@
-# satan.2010
-My personal portfolio website built with HTML and CSS, hosted using GitHub Pages.
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercedes-Benz CLS 63 AMG S — الدليل الشامل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0a0a0a;
+    --carbon:  #111318;
+    --steel:   #1c1f26;
+    --panel:   #22262f;
+    --gold:    #c8a84b;
+    --gold2:   #f0d080;
+    --red:     #c0392b;
+    --silver:  #a8adb8;
+    --white:   #f0f2f5;
+    --muted:   #666d7a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:999;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,168,75,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.3rem; font-weight:700;
+    color: var(--gold); letter-spacing:2px;
+  }
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a {
+    color: var(--silver); text-decoration:none;
+    font-size:0.88rem; font-weight:600; letter-spacing:0.5px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-btn {
+    background: var(--gold); color: var(--black);
+    border:none; border-radius:4px; padding:8px 18px;
+    font-family:'Cairo',sans-serif; font-weight:700;
+    font-size:0.82rem; cursor:pointer; transition: background .2s;
+  }
+  .nav-btn:hover { background: var(--gold2); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111318 40%, #1a1008 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center;
+    padding: 100px 40px 60px;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(200,168,75,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(192,57,43,0.05) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display:inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size:0.75rem; font-weight:700;
+    letter-spacing:3px; padding:6px 18px; border-radius:2px;
+    margin-bottom:28px; text-transform:uppercase;
+  }
+  .hero-title {
+    font-family:'Rajdhani',sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight:700; line-height:1;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, #fff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom:12px;
+  }
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: var(--silver); margin-bottom:40px; font-weight:300;
+  }
+  .hero-stats {
+    display:flex; gap:50px; justify-content:center;
+    flex-wrap:wrap; margin-bottom:48px;
+  }
+  .hstat { text-align:center; }
+  .hstat-val {
+    font-family:'Rajdhani',sans-serif;
+    font-size:2.8rem; font-weight:700; color:var(--gold);
+    line-height:1;
+  }
+  .hstat-lbl { font-size:0.78rem; color:var(--silver); letter-spacing:1px; margin-top:4px; }
+  .hero-car {
+    width: 100%; max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-car img {
+    width:100%; border-radius:8px;
+    filter: drop-shadow(0 20px 60px rgba(200,168,75,0.15));
+  }
+  .hero-car-placeholder {
+    width:100%; height:380px;
+    background: linear-gradient(135deg, #1c1f26, #22262f);
+    border-radius:12px; border:1px solid rgba(200,168,75,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:8rem; position:relative; overflow:hidden;
+  }
+  .hero-car-placeholder::before {
+    content:'';
+    position:absolute; inset:0;
+    background: linear-gradient(90deg, transparent, rgba(200,168,75,0.04), transparent);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+  .cta-row { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary {
+    background: var(--gold); color:var(--black);
+    padding:14px 36px; border:none; border-radius:4px;
+    font-family:'Cairo',sans-serif; font-size:1rem; font-weight:700;
+    cursor:pointer; transition:all .25s; text-decoration:none;
+    display:inline-block;
+  }
+  .btn-primary:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,168,75,0.3); }
+  .btn-outline {
+    background:transparent; color:var(--gold);
+    padding:14px 36px; border:1px solid var(--gold); border-radius:4px;
+    font-family:'Cairo',sans-serif; font-size:1rem; font-weight:600;
+    cursor:pointer; transition:all .25s; text-decoration:none;
+    display:inline-block;
+  }
+  .btn-outline:hover { background:rgba(200,168,75,0.1); transform:translateY(-2px); }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding:80px 40px; max-width:1200px; margin:0 auto; }
+  .section-label {
+    font-size:0.75rem; color:var(--gold); letter-spacing:3px;
+    text-transform:uppercase; font-weight:700; margin-bottom:12px;
+  }
+  .section-title {
+    font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:700;
+    margin-bottom:16px; line-height:1.2;
+  }
+  .section-desc {
+    color:var(--silver); font-size:1rem; line-height:1.8;
+    max-width:600px;
+  }
+  .divider {
+    width:60px; height:3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin:20px 0 40px;
+  }
+
+  /* ── ABOUT ── */
+  #about { padding-top:100px; }
+  .about-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:60px;
+    align-items:center; margin-top:20px;
+  }
+  .about-image {
+    width:100%; aspect-ratio:4/3;
+    background: linear-gradient(135deg, var(--steel), var(--panel));
+    border-radius:8px; border:1px solid rgba(200,168,75,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-size:5rem; color:rgba(200,168,75,0.3);
+    position:relative; overflow:hidden;
+  }
+  .about-image::after {
+    content:'CLS 63 AMG S';
+    position:absolute; bottom:20px; right:20px;
+    font-family:'Rajdhani',sans-serif; font-size:1rem;
+    color:var(--gold); letter-spacing:2px;
+  }
+  .about-text p { color:var(--silver); line-height:1.9; margin-bottom:16px; }
+  .about-text strong { color:var(--gold); }
+
+  /* ── SPECS ── */
+  #specs { background:var(--carbon); border-radius:16px; max-width:100%; }
+  .specs-wrap { max-width:1200px; margin:0 auto; padding:80px 40px; }
+  .specs-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:2px; margin-top:40px;
+    border:1px solid rgba(200,168,75,0.1); border-radius:8px; overflow:hidden;
+  }
+  .spec-card {
+    background:var(--steel); padding:28px 24px;
+    border-bottom:1px solid rgba(200,168,75,0.06);
+    transition: background .25s;
+    cursor:default;
+  }
+  .spec-card:hover { background:var(--panel); }
+  .spec-icon { font-size:1.8rem; margin-bottom:12px; }
+  .spec-val {
+    font-family:'Rajdhani',sans-serif;
+    font-size:2rem; font-weight:700; color:var(--gold); line-height:1;
+  }
+  .spec-unit { font-size:0.9rem; color:var(--silver); }
+  .spec-lbl { font-size:0.82rem; color:var(--muted); margin-top:6px; letter-spacing:0.5px; }
+
+  /* ── TABS ── */
+  .tabs { display:flex; gap:0; margin-bottom:0; flex-wrap:wrap; }
+  .tab-btn {
+    background:var(--steel); color:var(--silver);
+    border:none; padding:14px 28px; cursor:pointer;
+    font-family:'Cairo',sans-serif; font-size:0.88rem; font-weight:600;
+    transition:all .2s; border-bottom:2px solid transparent;
+  }
+  .tab-btn.active { background:var(--panel); color:var(--gold); border-bottom-color:var(--gold); }
+  .tab-btn:hover:not(.active) { color:var(--white); }
+  .tab-panel { display:none; background:var(--panel); padding:32px; border-radius:0 8px 8px 8px; }
+  .tab-panel.active { display:block; }
+  .tab-list { list-style:none; }
+  .tab-list li {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05);
+    font-size:0.9rem;
+  }
+  .tab-list li:last-child { border-bottom:none; }
+  .tab-list .key { color:var(--silver); }
+  .tab-list .val { color:var(--white); font-weight:600; font-size:0.95rem; }
+
+  /* ── GALLERY ── */
+  #gallery { text-align:center; }
+  .gallery-grid {
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 250px 250px;
+    gap:12px; margin-top:40px;
+  }
+  .gallery-item {
+    background: linear-gradient(135deg, var(--steel), var(--panel));
+    border-radius:8px; border:1px solid rgba(200,168,75,0.1);
+    display:flex; align-items:center; justify-content:center;
+    font-size:3rem; color:rgba(200,168,75,0.25);
+    position:relative; overflow:hidden; cursor:pointer;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .gallery-item:hover { transform:scale(1.02); box-shadow:0 8px 32px rgba(200,168,75,0.1); }
+  .gallery-item:first-child { grid-row:1/3; font-size:5rem; }
+  .gallery-item .caption {
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(transparent,rgba(0,0,0,0.8));
+    padding:20px 16px 12px; font-size:0.8rem; color:var(--silver);
+    font-family:'Cairo',sans-serif; text-align:right;
+  }
+  .img-real {
+    width:100%; height:100%; object-fit:cover; border-radius:8px;
+  }
+
+  /* ── Algeria PRICES ── */
+  #algeria { background:var(--carbon); max-width:100%; }
+  .algeria-wrap { max-width:1200px; margin:0 auto; padding:80px 40px; }
+  .price-cards {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:20px; margin-top:40px;
+  }
+  .price-card {
+    background: var(--steel);
+    border:1px solid rgba(200,168,75,0.12);
+    border-radius:12px; padding:28px; position:relative;
+    transition:transform .3s, border-color .3s;
+    overflow:hidden;
+  }
+  .price-card:hover { transform:translateY(-4px); border-color:rgba(200,168,75,0.4); }
+  .price-card.featured {
+    border-color:var(--gold);
+    background:linear-gradient(135deg, var(--steel), #1e1b10);
+  }
+  .price-card.featured::before {
+    content:'الأكثر طلباً';
+    position:absolute; top:0; left:0;
+    background:var(--gold); color:var(--black);
+    font-size:0.72rem; font-weight:700; padding:4px 14px;
+    border-radius:0 0 8px 0;
+  }
+  .pc-year { font-size:0.78rem; color:var(--gold); letter-spacing:2px; margin-bottom:8px; font-weight:700; }
+  .pc-model { font-size:1.15rem; font-weight:700; margin-bottom:6px; }
+  .pc-variant { font-size:0.82rem; color:var(--silver); margin-bottom:20px; }
+  .pc-price {
+    font-family:'Rajdhani',sans-serif;
+    font-size:2rem; font-weight:700;
+    color:var(--gold); margin-bottom:4px;
+  }
+  .pc-currency { font-size:0.8rem; color:var(--muted); margin-bottom:20px; }
+  .pc-features { list-style:none; }
+  .pc-features li {
+    font-size:0.83rem; color:var(--silver); padding:5px 0;
+    display:flex; align-items:center; gap:8px;
+  }
+  .pc-features li::before { content:'✓'; color:var(--gold); font-weight:700; }
+  .pc-badge {
+    display:inline-block; margin-top:14px;
+    font-size:0.72rem; color:var(--muted);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:4px 10px; border-radius:20px;
+  }
+
+  /* ── DISCLAIMER ── */
+  .price-note {
+    background:rgba(200,168,75,0.06); border:1px solid rgba(200,168,75,0.15);
+    border-radius:8px; padding:16px 20px; margin-top:28px;
+    font-size:0.82rem; color:var(--silver); display:flex; gap:12px; align-items:flex-start;
+  }
+  .price-note .icon { font-size:1.2rem; flex-shrink:0; }
+
+  /* ── COMPARISON ── */
+  #compare { }
+  .compare-table { margin-top:40px; overflow-x:auto; }
+  table {
+    width:100%; border-collapse:collapse;
+    background:var(--steel); border-radius:8px; overflow:hidden;
+  }
+  th {
+    background:var(--panel); color:var(--gold);
+    padding:14px 20px; text-align:right;
+    font-size:0.85rem; font-weight:700; border-bottom:2px solid rgba(200,168,75,0.2);
+  }
+  td {
+    padding:13px 20px; font-size:0.85rem;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    color:var(--silver);
+  }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(200,168,75,0.03); }
+  .cls-col { color:var(--gold); font-weight:700; }
+  .winner { background:rgba(200,168,75,0.08) !important; }
+
+  /* ── INTERACTIVE QUIZ ── */
+  #quiz { background:var(--carbon); max-width:100%; }
+  .quiz-wrap { max-width:800px; margin:0 auto; padding:80px 40px; text-align:center; }
+  .quiz-card {
+    background:var(--steel); border-radius:12px;
+    border:1px solid rgba(200,168,75,0.12); padding:40px;
+    margin-top:40px;
+  }
+  .quiz-question { font-size:1.2rem; font-weight:600; margin-bottom:28px; }
+  .quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .quiz-opt {
+    background:var(--panel); border:1px solid rgba(255,255,255,0.08);
+    border-radius:8px; padding:14px; cursor:pointer;
+    font-family:'Cairo',sans-serif; font-size:0.9rem; color:var(--silver);
+    transition:all .2s; text-align:center;
+  }
+  .quiz-opt:hover { border-color:var(--gold); color:var(--white); }
+  .quiz-opt.selected { border-color:var(--gold); background:rgba(200,168,75,0.1); color:var(--gold); }
+  .quiz-result {
+    display:none; background:var(--panel); border-radius:8px;
+    padding:24px; margin-top:24px; border:1px solid rgba(200,168,75,0.2);
+  }
+  .quiz-result.show { display:block; }
+  .result-emoji { font-size:3rem; margin-bottom:12px; }
+  .result-title { font-size:1.2rem; font-weight:700; color:var(--gold); margin-bottom:8px; }
+  .result-text { color:var(--silver); font-size:0.9rem; line-height:1.7; }
+  .quiz-nav { display:flex; justify-content:space-between; align-items:center; margin-top:24px; }
+  .quiz-progress { font-size:0.8rem; color:var(--muted); }
+  .progress-bar { background:rgba(255,255,255,0.08); border-radius:4px; height:4px; margin-top:20px; }
+  .progress-fill { background:var(--gold); height:100%; border-radius:4px; transition:width .4s; }
+
+  /* ── CORRECT INFO FORM ── */
+  #correct { }
+  .form-wrap {
+    background:var(--steel); border-radius:12px;
+    border:1px solid rgba(200,168,75,0.12); padding:40px;
+    margin-top:40px; max-width:700px;
+  }
+  .form-group { margin-bottom:20px; }
+  .form-group label {
+    display:block; font-size:0.85rem; color:var(--silver);
+    margin-bottom:8px; font-weight:600;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width:100%; background:var(--panel);
+    border:1px solid rgba(255,255,255,0.1); border-radius:6px;
+    padding:12px 16px; color:var(--white);
+    font-family:'Cairo',sans-serif; font-size:0.9rem;
+    transition:border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline:none; border-color:var(--gold);
+  }
+  .form-group select option { background:var(--panel); }
+  .form-group textarea { resize:vertical; min-height:100px; }
+  .form-submit {
+    background:var(--gold); color:var(--black);
+    border:none; border-radius:6px; padding:14px 40px;
+    font-family:'Cairo',sans-serif; font-size:1rem; font-weight:700;
+    cursor:pointer; transition:all .25s; width:100%;
+  }
+  .form-submit:hover { background:var(--gold2); }
+  .form-success {
+    display:none; background:rgba(39,174,96,0.1);
+    border:1px solid rgba(39,174,96,0.3); border-radius:8px;
+    padding:20px; text-align:center; color:#2ecc71;
+    margin-top:16px;
+  }
+  .form-success.show { display:block; }
+
+  /* ── VIDEO ── */
+  .video-placeholder {
+    width:100%; aspect-ratio:16/9;
+    background:var(--steel); border-radius:12px;
+    border:1px solid rgba(200,168,75,0.12);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; cursor:pointer;
+    transition:background .3s; margin-top:40px;
+  }
+  .video-placeholder:hover { background:var(--panel); }
+  .play-icon { font-size:4rem; margin-bottom:12px; color:var(--gold); }
+  .video-label { color:var(--silver); font-size:0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--carbon); border-top:1px solid rgba(200,168,75,0.1);
+    text-align:center; padding:40px;
+    color:var(--muted); font-size:0.82rem;
+  }
+  footer .footer-logo {
+    font-family:'Rajdhani',sans-serif; font-size:1.5rem;
+    color:var(--gold); letter-spacing:3px; margin-bottom:12px;
+  }
+  footer p { margin-bottom:6px; }
+  footer .disclaimer {
+    margin-top:16px; padding:12px;
+    background:rgba(255,255,255,0.03); border-radius:6px;
+    font-size:0.75rem;
+  }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display:none; position:fixed; inset:0; z-index:9999;
+    background:rgba(0,0,0,0.92); align-items:center; justify-content:center;
+  }
+  #lightbox.open { display:flex; }
+  #lightbox-inner {
+    background:var(--steel); border-radius:12px;
+    padding:24px; max-width:600px; width:90%;
+    border:1px solid rgba(200,168,75,0.2);
+    position:relative;
+  }
+  #lightbox-close {
+    position:absolute; top:12px; left:12px;
+    background:none; border:none; color:var(--silver);
+    font-size:1.5rem; cursor:pointer;
+  }
+  #lightbox-title { color:var(--gold); font-size:1.1rem; font-weight:700; margin-bottom:12px; }
+  #lightbox-body { color:var(--silver); font-size:0.9rem; line-height:1.8; }
+
+  /* ── SCROLL TO TOP ── */
+  #scrolltop {
+    position:fixed; bottom:28px; left:28px; z-index:500;
+    background:var(--gold); color:var(--black);
+    width:44px; height:44px; border-radius:50%;
+    border:none; font-size:1.2rem; cursor:pointer;
+    opacity:0; transition:opacity .3s, transform .3s;
+    transform:translateY(10px);
+  }
+  #scrolltop.visible { opacity:1; transform:translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px){
+    nav { padding:0 16px; }
+    .nav-links { display:none; }
+    section { padding:60px 20px; }
+    .about-grid { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr; grid-template-rows:auto; }
+    .gallery-item:first-child { grid-row:auto; }
+    .hero-stats { gap:28px; }
+    .quiz-options { grid-template-columns:1fr; }
+    .specs-wrap, .algeria-wrap, .quiz-wrap { padding:60px 20px; }
+    th, td { padding:10px 12px; }
+    .form-wrap { padding:24px; }
+  }
+
+  /* Fade-in animation */
+  .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CLS 63 S ◈ AMG</div>
+  <ul class="nav-links">
+    <li><a href="#about">التعريف</a></li>
+    <li><a href="#specs">المواصفات</a></li>
+    <li><a href="#gallery">المعرض</a></li>
+    <li><a href="#algeria">الأسعار في الجزائر</a></li>
+    <li><a href="#compare">المقارنة</a></li>
+    <li><a href="#correct">تصحيح المعلومات</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('correct').scrollIntoView({behavior:'smooth'})">طلب تصحيح</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="max-width:100%; padding-top:100px;">
+  <div class="hero-badge">المرجع الشامل</div>
+  <h1 class="hero-title">CLS 63 AMG S</h1>
+  <p class="hero-sub">القوة الخام في لباس الأناقة — فن ألماني بلا مثيل</p>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-val">585</div>
+      <div class="hstat-lbl">حصان</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">3.6</div>
+      <div class="hstat-lbl">ثانية 0→100</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">800</div>
+      <div class="hstat-lbl">نيوتن/متر</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">250+</div>
+      <div class="hstat-lbl">كم/س</div>
+    </div>
+  </div>
+
+  <div class="hero-car" style="max-width:860px;">
+    <div class="hero-car-placeholder">
+      🚗
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a href="#specs" class="btn-primary">اكتشف المواصفات</a>
+    <a href="#algeria" class="btn-outline">الأسعار في الجزائر</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div class="section-label">التعريف</div>
+  <h2 class="section-title">ما هي Mercedes CLS 63 AMG S؟</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div>
+      <div class="about-image">🏎️</div>
+    </div>
+    <div class="about-text">
+      <p>
+        سيارة <strong>Mercedes-Benz CLS 63 AMG S</strong> هي نسخة النخبة من طراز CLS الأسطوري،
+        وتُعدّ من أقوى السيارات السيدان الرياضية الفاخرة في التاريخ. تجمع بين أناقة الكوبيه
+        وعملية السيدان، مع قوة وحشية مستقاة من مختبرات AMG الألمانية.
+      </p>
+      <p>
+        الحرف <strong>"S"</strong> يعني "S-Model" وهو ترقية استثنائية تمنح السيارة
+        <strong>585 حصان</strong> بدلاً من 557 حصان في النسخة العادية، مع نظام دفع رباعي
+        4MATIC يضمن الثبات على الطرق الجزائرية.
+      </p>
+      <p>
+        صُنعت في <strong>أفلباخ، ألمانيا</strong> — حيث يجمع كل ميكانيكي AMG محرك واحد فقط
+        يدوياً ويوقّعه بلوحة معدنية بيده. هذا ليس تسلية — هذه فلسفة.
+      </p>
+      <p>
+        الجيل الثاني (<strong>C218</strong>، 2011–2018) هو الأكثر شيوعاً في الجزائر،
+        ومتوفر بحالات مختلفة في السوق المحلية.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS TABS -->
+<div id="specs" style="background:var(--carbon);">
+  <div class="specs-wrap fade-in">
+    <div class="section-label">المواصفات</div>
+    <h2 class="section-title">كل ما تحتاج معرفته</h2>
+    <div class="divider"></div>
+
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-icon">⚙️</div>
+        <div class="spec-val">5.5<span class="spec-unit">L</span></div>
+        <div class="spec-lbl">محرك V8 بيتوربو</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">⚡</div>
+        <div class="spec-val">585<span class="spec-unit">حصان</span></div>
+        <div class="spec-lbl">القدرة القصوى</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🔩</div>
+        <div class="spec-val">800<span class="spec-unit">N·m</span></div>
+        <div class="spec-lbl">عزم الدوران</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🏁</div>
+        <div class="spec-val">3.6<span class="spec-unit">ث</span></div>
+        <div class="spec-lbl">من 0 إلى 100 كم/س</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🚀</div>
+        <div class="spec-val">250+<span class="spec-unit">كم/س</span></div>
+        <div class="spec-lbl">السرعة القصوى</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🛞</div>
+        <div class="spec-val">7<span class="spec-unit">سرعات</span></div>
+        <div class="spec-lbl">ناقل AMG SPEEDSHIFT MCT</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">⛽</div>
+        <div class="spec-val">10.5<span class="spec-unit">L/100</span></div>
+        <div class="spec-lbl">استهلاك مختلط</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">⚖️</div>
+        <div class="spec-val">1795<span class="spec-unit">كغ</span></div>
+        <div class="spec-lbl">الوزن الصافي</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(this,'tab-motor')">المحرك</button>
+        <button class="tab-btn" onclick="openTab(this,'tab-design')">الهيكل والتصميم</button>
+        <button class="tab-btn" onclick="openTab(this,'tab-tech')">التقنيات</button>
+        <button class="tab-btn" onclick="openTab(this,'tab-comfort')">الراحة والرفاهية</button>
+      </div>
+
+      <div id="tab-motor" class="tab-panel active">
+        <ul class="tab-list">
+          <li><span class="key">النوع</span><span class="val">V8 بيتوربو AMG</span></li>
+          <li><span class="key">الحجم</span><span class="val">5461 سم³</span></li>
+          <li><span class="key">القدرة</span><span class="val">585 حصان @ 5500 دورة/دقيقة</span></li>
+          <li><span class="key">عزم الدوران</span><span class="val">800 Nm من 1750 إلى 5000 دورة</span></li>
+          <li><span class="key">ناقل الحركة</span><span class="val">أوتوماتيك 7 سرعات MCT</span></li>
+          <li><span class="key">نظام الدفع</span><span class="val">4MATIC (رباعي دائم)</span></li>
+          <li><span class="key">0 → 100 كم/س</span><span class="val">3.6 ثانية</span></li>
+          <li><span class="key">السرعة القصوى</span><span class="val">250 كم/س (مقيدة)</span></li>
+          <li><span class="key">الاستهلاك المختلط</span><span class="val">10.5 ل/100كم</span></li>
+          <li><span class="key">انبعاثات CO₂</span><span class="val">244 غ/كم</span></li>
+        </ul>
+      </div>
+
+      <div id="tab-design" class="tab-panel">
+        <ul class="tab-list">
+          <li><span class="key">الطول</span><span class="val">4996 مم</span></li>
+          <li><span class="key">العرض</span><span class="val">1882 مم</span></li>
+          <li><span class="key">الارتفاع</span><span class="val">1407 مم</span></li>
+          <li><span class="key">قاعدة العجلات</span><span class="val">2874 مم</span></li>
+          <li><span class="key">أبعاد الإطارات (أمامي)</span><span class="val">255/35 R19</span></li>
+          <li><span class="key">أبعاد الإطارات (خلفي)</span><span class="val">285/30 R19</span></li>
+          <li><span class="key">الفرامل الأمامية</span><span class="val">أقراص مثقبة 402 مم / 6 مكابس</span></li>
+          <li><span class="key">الفرامل الخلفية</span><span class="val">أقراص مثقبة 360 مم / 4 مكابس</span></li>
+          <li><span class="key">التعليق</span><span class="val">AMG Ride Control (نشط)</span></li>
+          <li><span class="key">الهيكل</span><span class="val">كوبيه 4 أبواب (C218)</span></li>
+        </ul>
+      </div>
+
+      <div id="tab-tech" class="tab-panel">
+        <ul class="tab-list">
+          <li><span class="key">نظام الثبات</span><span class="val">ESP مع وضع Sport و Sport+</span></li>
+          <li><span class="key">الدفع الرباعي</span><span class="val">4MATIC مع توزيع 33/67</span></li>
+          <li><span class="key">الفارق الخلفي</span><span class="val">تفاضلي خلفي محكم AMG</span></li>
+          <li><span class="key">أوضاع القيادة</span><span class="val">Comfort / Sport / Sport+ / Manual</span></li>
+          <li><span class="key">الشاشات</span><span class="val">شاشة مزدوجة MBUX (الجيل الجديد)</span></li>
+          <li><span class="key">الكاميرات</span><span class="val">كاميرا خلفية + نظام 360°</span></li>
+          <li><span class="key">الصوت</span><span class="val">Burmester Surround</span></li>
+          <li><span class="key">الاتصال</span><span class="val">Apple CarPlay / Android Auto</span></li>
+          <li><span class="key">الإضاءة</span><span class="val">LED ذكي متكيف</span></li>
+          <li><span class="key">الكراسي</span><span class="val">AMG ذات عوارض رياضية مع تدفئة وتبريد</span></li>
+        </ul>
+      </div>
+
+      <div id="tab-comfort" class="tab-panel">
+        <ul class="tab-list">
+          <li><span class="key">المقاعد</span><span class="val">جلد Nappa AMG رياضي</span></li>
+          <li><span class="key">التحكم بالمناخ</span><span class="val">ثنائي المناطق (4 مناطق في النسخ المتقدمة)</span></li>
+          <li><span class="key">التسخين</span><span class="val">المقاعد الأمامية + المقود + الزجاج</span></li>
+          <li><span class="key">الفتحة الزجاجية</span><span class="val">بانورامية</span></li>
+          <li><span class="key">الصندوق الأمتعة</span><span class="val">520 لتر</span></li>
+          <li><span class="key">نظام مكافحة النوم</span><span class="val">ATTENTION ASSIST</span></li>
+          <li><span class="key">وسادات هوائية</span><span class="val">8 وسادات هوائية</span></li>
+          <li><span class="key">خزان الوقود</span><span class="val">80 لتر</span></li>
+          <li><span class="key">الضمان (جديد)</span><span class="val">سنتان / 100,000 كم</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery" class="fade-in">
+  <div class="section-label">المعرض</div>
+  <h2 class="section-title">تصاميم أيقونية</h2>
+  <div class="divider" style="margin:20px auto 0;"></div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('الشكل الخارجي','خطوط CLS 63 AMG S الرياضية الانسيابية تجمع بين جمالية الكوبيه وعملية السيدان. المصابيح الأمامية LED الحادة، المصب الرياضي المضاعف، والعجلات 19 بوصة AMG كلها تعكس طابع السيارة القتالي.')">
+      <span>🏎️</span>
+      <div class="caption">الشكل الخارجي الرياضي</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('المقصورة الداخلية','داخلية فاخرة من الجلد الطبيعي Nappa، مع لمسات كربون أو خشب حقيقي حسب الإضافات. المقاعد الرياضية AMG توفر دعماً جانبياً محكماً مع الراحة الكاملة في الرحلات الطويلة.')">
+      <span>🪑</span>
+      <div class="caption">المقصورة الداخلية الفاخرة</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('المحرك V8 بيتوربو','المحرك V8 بيتوربو 5.5 لتر صُنع يدوياً بواسطة ميكانيكي AMG واحد فقط في أفلباخ ألمانيا، موقّع بيد صانعه. ينتج 585 حصان وعزم دوران 800 نيوتن/متر.')">
+      <span>⚙️</span>
+      <div class="caption">قلب ألماني — V8 بيتوربو</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('العجلات والمكابح','عجلات AMG 19 بوصة متعددة الأذرع، مع نظام فرملة استثنائي — أقراص مثقبة مهواة 402 مم أمامياً مع 6 مكابس لتوقف آمن حتى من 250 كم/س.')">
+      <span>🛞</span>
+      <div class="caption">العجلات AMG والفرامل الرياضية</div>
+    </div>
+  </div>
+  <p style="color:var(--muted);font-size:0.8rem;margin-top:16px;">اضغط على أي صورة لمعرفة التفاصيل</p>
+</section>
+
+<!-- ALGERIA PRICES -->
+<div id="algeria" style="background:var(--carbon);">
+  <div class="algeria-wrap fade-in">
+    <div class="section-label">الجزائر</div>
+    <h2 class="section-title">أسعار CLS 63 AMG S في الجزائر</h2>
+    <div class="divider"></div>
+    <p class="section-desc">
+      السيارة غير متوفرة رسمياً جديدة في الجزائر، لكنها تُباع مستعملة في السوق الحرة بأسعار تتفاوت حسب الموديل والحالة والمسافة المقطوعة.
+    </p>
+
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="pc-year">2012 — 2013</div>
+        <div class="pc-model">CLS 63 AMG S</div>
+        <div class="pc-variant">الجيل الأول C218 — مسافة 120,000–180,000 كم</div>
+        <div class="pc-price">9,500,000</div>
+        <div class="pc-currency">دينار جزائري تقريباً</div>
+        <ul class="pc-features">
+          <li>محرك V8 بيتوربو 5.5 لتر</li>
+          <li>585 حصان / 4MATIC</li>
+          <li>مستوردة بشكل خاص</li>
+          <li>كراسي AMG جلدية</li>
+        </ul>
+        <span class="pc-badge">سعر السوق المستعمل</span>
+      </div>
+
+      <div class="price-card featured">
+        <div class="pc-year">2014 — 2016</div>
+        <div class="pc-model">CLS 63 AMG S</div>
+        <div class="pc-variant">الجيل المحسّن — مسافة 60,000–100,000 كم</div>
+        <div class="pc-price">13,000,000 — 16,000,000</div>
+        <div class="pc-currency">دينار جزائري تقريباً</div>
+        <ul class="pc-features">
+          <li>جميع الإضافات الكاملة</li>
+          <li>نظام Burmester Surround</li>
+          <li>Harman Kardon</li>
+          <li>حالة أفضل وصيانة موثقة</li>
+          <li>4MATIC + تعليق AMG نشط</li>
+        </ul>
+        <span class="pc-badge">الفئة الأكثر توفراً</span>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-year">2017 — 2018</div>
+        <div class="pc-model">CLS 63 AMG S</div>
+        <div class="pc-variant">آخر جيل C218 — أقل من 60,000 كم</div>
+        <div class="pc-price">18,000,000 — 22,000,000+</div>
+        <div class="pc-currency">دينار جزائري تقريباً</div>
+        <ul class="pc-features">
+          <li>الأندر في الجزائر</li>
+          <li>جميع التقنيات الحديثة</li>
+          <li>كاميرا 360 وشاشات MBUX</li>
+          <li>وضعية شبه جديدة</li>
+          <li>سعر يقترب من بعض الجديدات</li>
+        </ul>
+        <span class="pc-badge">نادرة / عالية الطلب</span>
+      </div>
+    </div>
+
+    <div class="price-note">
+      <span class="icon">⚠️</span>
+      <div>
+        <strong>تنبيه مهم:</strong> هذه الأسعار تقديرية مستخرجة من السوق الجزائري الحر (وادكنيس وغيره) وتتغير باستمرار.
+        الأسعار الفعلية تعتمد على: حالة السيارة، المسافة المقطوعة، مصدر الاستيراد، وجود وثائق الجمارك، ونوع الإضافات.
+        يُنصح دائماً بفحص السيارة عند ميكانيكي متخصص قبل الشراء. هل وجدت خطأ؟
+        <a href="#correct" style="color:var(--gold)">يمكنك تصحيح المعلومات هنا.</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<section id="compare" class="fade-in">
+  <div class="section-label">المقارنة</div>
+  <h2 class="section-title">CLS 63 S مقابل المنافسين</h2>
+  <div class="divider"></div>
+  <p class="section-desc">كيف تقارن CLS 63 AMG S بأبرز منافسيها من السيدان الرياضية الفاخرة؟</p>
+
+  <div class="compare-table">
+    <table>
+      <thead>
+        <tr>
+          <th>المعيار</th>
+          <th>CLS 63 AMG S</th>
+          <th>BMW M6 Gran Coupe</th>
+          <th>Porsche Panamera Turbo</th>
+          <th>Audi RS7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="winner">
+          <td>القدرة (حصان)</td>
+          <td class="cls-col">585 ✓</td>
+          <td>560</td>
+          <td>550</td>
+          <td>560</td>
+        </tr>
+        <tr>
+          <td>عزم الدوران (Nm)</td>
+          <td class="cls-col">800 ✓</td>
+          <td>680</td>
+          <td>750</td>
+          <td>700</td>
+        </tr>
+        <tr class="winner">
+          <td>0 → 100 كم/س</td>
+          <td class="cls-col">3.6 ث ✓</td>
+          <td>4.0 ث</td>
+          <td>3.8 ث</td>
+          <td>3.9 ث</td>
+        </tr>
+        <tr>
+          <td>المحرك</td>
+          <td class="cls-col">V8 5.5L Twin Turbo</td>
+          <td>V8 4.4L Twin Turbo</td>
+          <td>V8 4.8L Twin Turbo</td>
+          <td>V8 4.0L Twin Turbo</td>
+        </tr>
+        <tr>
+          <td>الوزن (كغ)</td>
+          <td class="cls-col">1795</td>
+          <td>1885</td>
+          <td>1890</td>
+          <td>1945</td>
+        </tr>
+        <tr>
+          <td>الدفع الرباعي</td>
+          <td class="cls-col">4MATIC ✓</td>
+          <td>لا (RWD)</td>
+          <td>PTM (4×4) ✓</td>
+          <td>Quattro ✓</td>
+        </tr>
+        <tr>
+          <td>التوفر في الجزائر</td>
+          <td class="cls-col">متوسط ✓</td>
+          <td>نادر</td>
+          <td>نادر جداً</td>
+          <td>متوسط</td>
+        </tr>
+        <tr>
+          <td>السعر التقديري (مستعمل)</td>
+          <td class="cls-col">9-22 مليون</td>
+          <td>10-18 مليون</td>
+          <td>15-28 مليون</td>
+          <td>8-16 مليون</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<div id="quiz" style="background:var(--carbon);">
+  <div class="quiz-wrap fade-in">
+    <div class="section-label">اكتشف ذوقك</div>
+    <h2 class="section-title">هل CLS 63 S مناسبة لك؟</h2>
+    <div class="divider" style="margin:20px auto 0;"></div>
+
+    <div class="quiz-card">
+      <div class="progress-bar"><div class="progress-fill" id="qprogress" style="width:25%"></div></div>
+
+      <div id="q1" class="quiz-step">
+        <p class="quiz-question" style="margin-top:20px;">ما هو أهم معيار بالنسبة لك في السيارة؟</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="nextQ(1,'perf')">⚡ الأداء والسرعة</button>
+          <button class="quiz-opt" onclick="nextQ(1,'luxury')">💎 الفخامة والراحة</button>
+          <button class="quiz-opt" onclick="nextQ(1,'design')">🎨 التصميم والأناقة</button>
+          <button class="quiz-opt" onclick="nextQ(1,'value')">💰 القيمة مقابل السعر</button>
+        </div>
+        <div class="quiz-nav">
+          <span></span>
+          <span class="quiz-progress">السؤال 1 من 4</span>
+        </div>
+      </div>
+
+      <div id="q2" class="quiz-step" style="display:none;">
+        <p class="quiz-question" style="margin-top:20px;">كيف تستخدم سيارتك بشكل رئيسي؟</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="nextQ(2,'daily')">🏙️ تنقل يومي في المدينة</button>
+          <button class="quiz-opt" onclick="nextQ(2,'highway')">🛣️ طرق سريعة ورحلات</button>
+          <button class="quiz-opt" onclick="nextQ(2,'weekend')">🏁 قيادة نهاية الأسبوع</button>
+          <button class="quiz-opt" onclick="nextQ(2,'family')">👨‍👩‍👧 عائلية متعددة الاستخدام</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-outline" style="padding:8px 16px;font-size:0.8rem;" onclick="backQ(1)">← رجوع</button>
+          <span class="quiz-progress">السؤال 2 من 4</span>
+        </div>
+      </div>
+
+      <div id="q3" class="quiz-step" style="display:none;">
+        <p class="quiz-question" style="margin-top:20px;">ما الميزانية التي تستطيع تخصيصها؟</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="nextQ(3,'budget1')">أقل من 10 مليون دج</button>
+          <button class="quiz-opt" onclick="nextQ(3,'budget2')">10 — 16 مليون دج</button>
+          <button class="quiz-opt" onclick="nextQ(3,'budget3')">16 — 22 مليون دج</button>
+          <button class="quiz-opt" onclick="nextQ(3,'budget4')">لا حدود للميزانية</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-outline" style="padding:8px 16px;font-size:0.8rem;" onclick="backQ(2)">← رجوع</button>
+          <span class="quiz-progress">السؤال 3 من 4</span>
+        </div>
+      </div>
+
+      <div id="q4" class="quiz-step" style="display:none;">
+        <p class="quiz-question" style="margin-top:20px;">ما مدى اهتمامك بالصيانة الدورية والتكاليف؟</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="showResult()">🔧 لا مشكلة، أنا ميكانيكي أو عندي ميكانيكي متخصص</button>
+          <button class="quiz-opt" onclick="showResult()">📖 أقبل تكاليف صيانة مرتفعة لأجل هذه السيارة</button>
+          <button class="quiz-opt" onclick="showResult()">⚠️ أبحث عن سيارة اقتصادية في الصيانة</button>
+          <button class="quiz-opt" onclick="showResult()">🤷 لم أفكر في الأمر بعد</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-outline" style="padding:8px 16px;font-size:0.8rem;" onclick="backQ(3)">← رجوع</button>
+          <span class="quiz-progress">السؤال 4 من 4</span>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-emoji" id="result-emoji">🏆</div>
+        <div class="result-title" id="result-title">نتيجتك</div>
+        <div class="result-text" id="result-text"></div>
+        <div style="margin-top:20px;">
+          <button class="btn-outline" style="font-size:0.85rem;padding:10px 24px;" onclick="resetQuiz()">أعد الاختبار</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO SECTION -->
+<section class="fade-in" style="text-align:center;">
+  <div class="section-label">مشاهدة</div>
+  <h2 class="section-title">السيارة في العمل</h2>
+  <div class="divider" style="margin:20px auto 0;"></div>
+  <div class="video-placeholder" onclick="window.open('https://www.youtube.com/results?search_query=Mercedes+CLS+63+AMG+S+review','_blank')">
+    <div class="play-icon">▶</div>
+    <div class="video-label">شاهد تجارب وتقييمات CLS 63 AMG S على يوتيوب</div>
+  </div>
+</section>
+
+<!-- CORRECT INFO FORM -->
+<section id="correct" class="fade-in">
+  <div class="section-label">المشاركة</div>
+  <h2 class="section-title">طلب تصحيح أو إضافة معلومة</h2>
+  <div class="divider"></div>
+  <p class="section-desc">
+    إذا لاحظت خطأ في المعلومات أو السعر، أو تريد إضافة تجربة شخصية — نرحب بمساهمتك!
+  </p>
+
+  <div class="form-wrap">
+    <div class="form-group">
+      <label>اسمك (اختياري)</label>
+      <input type="text" id="f-name" placeholder="مثال: أحمد من وهران">
+    </div>
+    <div class="form-group">
+      <label>نوع الطلب</label>
+      <select id="f-type">
+        <option value="">— اختر نوع الطلب —</option>
+        <option value="price">تصحيح سعر</option>
+        <option value="spec">تصحيح مواصفة تقنية</option>
+        <option value="info">إضافة معلومة مفيدة</option>
+        <option value="review">مشاركة تجربة شخصية</option>
+        <option value="other">أخرى</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>القسم المتعلق</label>
+      <select id="f-section">
+        <option value="">— اختر القسم —</option>
+        <option value="specs">المواصفات التقنية</option>
+        <option value="price">أسعار في الجزائر</option>
+        <option value="compare">المقارنة</option>
+        <option value="gallery">المعرض</option>
+        <option value="general">عام</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>تفاصيل الطلب أو التصحيح</label>
+      <textarea id="f-message" placeholder="اكتب هنا ما تريد تصحيحه أو إضافته بكل وضوح..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>مصدر المعلومة (اختياري)</label>
+      <input type="text" id="f-source" placeholder="مثال: من تجربتي الشخصية / رابط / وكيل سيارات...">
+    </div>
+    <button class="form-submit" onclick="submitForm()">📨 إرسال الطلب</button>
+    <div class="form-success" id="form-success">
+      ✅ شكراً جزيلاً! تم استلام طلبك بنجاح. سيتم مراجعة المعلومة والرد عليك قريباً.
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div id="lightbox-inner">
+    <button id="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
+    <div id="lightbox-title"></div>
+    <div id="lightbox-body"></div>
+  </div>
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CLS 63 AMG S</div>
+  <p>الدليل الشامل غير الرسمي للسيارة في الجزائر</p>
+  <p style="margin-top:8px;color:var(--muted);font-size:0.78rem;">
+    ©️ 2025 — موقع مرجعي تثقيفي | غير مرتبط رسمياً بـ Mercedes-Benz أو Daimler AG
+  </p>
+  <div class="disclaimer">
+    ⚠️ جميع الأسعار المذكورة تقديرية ومستخرجة من السوق الجزائري الحر وقابلة للتغيير.
+    المعلومات التقنية مأخوذة من المصادر الرسمية لـ Mercedes-AMG.
+    إذا لاحظت أي خطأ، يرجى استخدام نموذج تصحيح المعلومات أعلاه.
+  </div>
+</footer>
+
+<script>
+// ── TABS ──
+function openTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+// ── QUIZ ──
+let quizAnswers = {};
+let currentQ = 1;
+
+function nextQ(from, answer) {
+  quizAnswers['q'+from] = answer;
+  document.querySelectorAll('#q'+from+' .quiz-opt').forEach(o=>o.classList.remove('selected'));
+  event.target.classList.add('selected');
+  setTimeout(()=>{
+    document.getElementById('q'+from).style.display='none';
+    let next = from+1;
+    if(next<=4){
+      document.getElementById('q'+next).style.display='block';
+      currentQ=next;
+      document.getElementById('qprogress').style.width=(next*25)+'%';
+    }
+  },350);
+}
+
+function backQ(to) {
+  document.getElementById('q'+(to+1)).style.display='none';
+  document.getElementById('q'+to).style.display='block';
+  currentQ=to;
+  document.getElementById('qprogress').style.width=(to*25)+'%';
+}
+
+function showResult() {
+  quizAnswers['q4'] = 'done';
+  document.getElementById('q4').style.display='none';
+  document.getElementById('qprogress').style.width='100%';
+
+  let emoji='🏆', title='', text='';
+  const p = quizAnswers.q1;
+  const b = quizAnswers.q3;
+  const u = quizAnswers.q2;
+
+  if(p==='perf' || p==='design'){
+    emoji='🔥'; title='CLS 63 AMG S هي سيارتك المثالية!';
+    text='شخصيتك تنسجم تماماً مع روح هذه السيارة. تحب الأداء والتصميم؟ ستجد في CLS 63 S الإثنين معاً. إن كانت ميزانيتك بين 10-16 مليون دج، ابحث عن موديل 2014–2016 بحالة جيدة وصيانة موثقة.';
+  } else if(p==='luxury'){
+    emoji='💎'; title='CLS 63 S ستبهرك بفخامتها!';
+    text='الداخلية بجلد Nappa وصوت Burmester وتعليق نشط هي بالضبط ما يبحث عنه عشاق الفخامة. تأكد من فحص نظام التعليق جيداً قبل الشراء لأنه يحتاج صيانة دورية.';
+  } else if(p==='value'){
+    emoji='💡'; title='يمكنك الاستفادة منها بذكاء!';
+    text='CLS 63 S قيمتها السوقية انخفضت مقارنة بأدائها. موديل 2012–2014 بسعر 9-11 مليون دج يمثل صفقة ممتازة إذا كنت تعرف كيف تصونها أو لديك ميكانيكي متخصص.';
+  } else {
+    emoji='🎯'; title='تحقق من خيارات أخرى أولاً!';
+    text='CLS 63 S سيارة ممتازة، لكنها تحتاج اهتماماً بالصيانة. فكّر في Audi RS7 كبديل إذا كان استهلاكك يومياً كثيفاً.';
+  }
+
+  document.getElementById('result-emoji').textContent=emoji;
+  document.getElementById('result-title').textContent=title;
+  document.getElementById('result-text').textContent=text;
+  document.getElementById('quiz-result').classList.add('show');
+}
+
+function resetQuiz(){
+  quizAnswers={};currentQ=1;
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById('q'+i);
+    if(el){ el.style.display= i===1?'block':'none'; el.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected')); }
+  }
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('qprogress').style.width='25%';
+}
+
+// ── LIGHTBOX ──
+function openLightbox(title, body){
+  document.getElementById('lightbox-title').textContent=title;
+  document.getElementById('lightbox-body').textContent=body;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(e){
+  if(e.target===document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('open');
+}
+
+// ── FORM ──
+function submitForm(){
+  const msg = document.getElementById('f-message').value.trim();
+  const type = document.getElementById('f-type').value;
+  if(!msg || !type){ alert('يرجى اختيار نوع الطلب وكتابة التفاصيل.'); return; }
+  document.getElementById('form-success').classList.add('show');
+  document.getElementById('f-message').value='';
+  document.getElementById('f-type').value='';
+  document.getElementById('f-section').value='';
+  document.getElementById('f-name').value='';
+  document.getElementById('f-source').value='';
+  setTimeout(()=>document.getElementById('form-success').classList.remove('show'),5000);
+}
+
+// ── SCROLL TOP ──
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('scrolltop');
+  if(window.scrollY>400) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+});
+
+// ── FADE IN ──
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
